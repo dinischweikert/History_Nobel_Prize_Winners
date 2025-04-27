@@ -47,3 +47,11 @@ category_value = prop_female_winner.loc[prop_female_winner['female_winner'] == p
 
 max_female_dict = {decade_key: category_value}
 
+# individuals/organizations that have won more than 1 nobel prize
+name_list = []
+repeat_list = []
+name_list = df['full_name'].unique()
+for name in name_list:
+    if len(df.loc[df['full_name']==name]) > 1:
+        repeat_list.append(name)
+

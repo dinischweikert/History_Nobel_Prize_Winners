@@ -7,9 +7,7 @@
 # 
 # The Nobel Foundation has made a dataset available of all prize winners from the outset of the awards from 1901 to 2023. The dataset used in this project is from the Nobel Prize API and is available in the `nobel.csv` file in the `data` folder.
 # 
-# In this project, you'll get a chance to explore and answer several questions related to this prizewinning data. And we encourage you then to explore further questions that you're interested in!
-
-# In[6]:
+# In this project, we explore and answer several questions related to this prizewinning data. 
 
 
 # Loading in required libraries
@@ -24,13 +22,28 @@ df = pd.read_csv('nobel.csv')
 top_gender = df['sex'].mode()
 top_country = df['birth_country'].mode()
 
-# decade with the highest ratio of US-born norbel prize winners to total winners
+# decade with the highest ratio of US-born nobel prize winners to total winners
 # split out decades
 def get_decade(year):
     return year // 10 * 10
 
+df['usa_born_winner'] = df['birth_country'] == 'United States of America'
 df['decade'] = df['year'].apply(get_decade)
+prop_usa_winners = df.groupby('decade', as_index=False)['usa_born_winner'].mean()
+
+# highest ratio of US-born nobel prize winners
+max_decade_usa = prop_usa_winners[prop_usa_winners['usa_born_winner'] == prop_usa_winners['usa_born_winner'].max()]['decade'].values[0]
 
 
+# decade and nobel prize category combination had highest proportion 
+# of female winners
+df['female_winner'] = df['sex'] == 'Female'
 
+prop_female_winner = df.groupby(['decade', 'category'],as_index=False)['female_winner'].mean()
+
+# create dictionary
+decade_key = prop_female_winner.loc[prop_female_winner['female_winner'] == prop_female_winner['female_winner'].max()]['decade'].values[0]
+category_value = prop_female_winner.loc[prop_female_winner['female_winner'] == prop_female_winner['female_winner'].max()]['category'].values[0]
+
+max_female_dict = {decade_key: category_value}
 

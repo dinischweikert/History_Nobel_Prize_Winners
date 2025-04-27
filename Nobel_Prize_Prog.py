@@ -17,13 +17,19 @@ import pandas as pd
 import seaborn as sns
 import numpy as np
 
-# Start coding here!
+# Read in data
+df = pd.read_csv('nobel.csv')
 
-# Test This change
+# most commonly awarded gender and birth country
+top_gender = df['sex'].mode()
+top_country = df['birth_country'].mode()
 
+# decade with the highest ratio of US-born norbel prize winners to total winners
+# split out decades
+def get_decade(year):
+    return year // 10 * 10
 
-
-# In[ ]:
+df['decade'] = df['year'].apply(get_decade)
 
 
 

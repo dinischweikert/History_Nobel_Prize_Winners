@@ -53,6 +53,15 @@ category_value = prop_female_winner.loc[prop_female_winner['female_winner'] == p
 max_female_dict = {decade_key: category_value}
 
 #######################################################################################################
+# decade and birth country combination with highest proportion of female winners
+#######################################################################################################
+prop_country_female_winner = df.groupby(['decade', 'birth_country'],as_index=False)['female_winner'].mean()
+
+# create dictionary
+decade_country_key = prop_country_female_winner.loc[prop_country_female_winner['female_winner'] == prop_female_winner['female_winner'].max()]['decade'].values[0]
+birth_country_value = prop_country_female_winner.loc[prop_country_female_winner['female_winner'] == prop_female_winner['female_winner'].max()]['birth_country'].values[0]
+
+#######################################################################################################
 # first woman to receive a nobel price and in what category
 #######################################################################################################
 female_df = df.loc[df['sex'] == 'Female']

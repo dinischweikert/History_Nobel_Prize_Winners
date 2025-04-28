@@ -82,4 +82,34 @@ for name in name_list:
     if len(df.loc[df['full_name']==name]) > 1:
         repeat_list.append(name)
 
+#######################################################################################################
+# visualization of count of winners in Each Category
+#######################################################################################################
+sns.catplot(x='category',
+           data = df,
+           kind='count',
+           hue = 'category')
 
+plt.title('Count of Winners in Each Category')
+
+plt.show()
+
+#######################################################################################################
+# visualization of men vs women winners
+#######################################################################################################
+sns.catplot(x='sex',
+            data=df,
+            kind='count',
+            hue='sex')
+
+plt.show()
+
+#######################################################################################################
+# visualization of individual vs organization winners
+#######################################################################################################
+sns.catplot(x='laureate_type',
+            data = df,
+            kind='count',
+            hue = 'laureate_type')
+
+plt.show()

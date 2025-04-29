@@ -20,4 +20,11 @@ Analyze Nobel Prize winner data and identify patterns by answering the following
   * Save your string answers as first_woman_name and first_woman_category.
 * Which individuals or organizations have won more than one Nobel Prize throughout the years?
   * Store the full names in a list named repeat_list.
+* Which country and decade had highest proportion of female laureates?
+  * Variable stored as dictionary decade_country_key: birth_country_value
+
+## Visualizations
+* Count of winners in each category
+* Visualization of men vs women laureates
+* Count of individual vs organization laureates
 
